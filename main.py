@@ -8,12 +8,12 @@ TOKEN = os.environ.get('TOKEN')
 bot = telebot.TeleBot(TOKEN)
 
 
-@bot.message_handlers(commands=['start'])
+@bot.message_handler(commands=['start'])
 def message_start(message):
     bot.send_message(message.chat.id, 'Hello user')
 
 
-@bot.message_handlers(commands=['links'])
+@bot.message_handler(commands=['links'])
 def message_links(message):
     keyboard = telebot.types.InlineKeyboardMarkup(row_width=1)
 
@@ -27,7 +27,7 @@ def message_links(message):
         bot.send_message(message.chat.id, 'List of links', reply_markup=keyboard)
 
 
-@bot.message_handlers(func=lambda x: x.text.lower().startwith('python'))
+@bot.message_handler(func=lambda x: x.text.lower().startwith('python'))
 def message_text(message):
     bot.send_message(message.chat.id, 'Python')
 
